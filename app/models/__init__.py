@@ -1,1 +1,1 @@
-from app.models.contacto import Contacto
+from app.models.models import Contacto

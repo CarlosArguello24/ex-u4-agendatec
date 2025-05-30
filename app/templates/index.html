@@ -2,30 +2,22 @@
 {% block content %}
 <div class="columns">
   <div class="column is-offset-3 is-6">
-    <a href="{{ url_for('contactos.nuevo_contacto') }}" class="button is-link"><i class="fa-solid fa-plus"></i>
-      &nbsp;
-      Nuevo contacto</a>
+    <a href="{{ url_for('descuentos.nuevo_descuento') }}" class="button is-link">
+      <i class="fa-solid fa-plus"></i>&nbsp;Nuevo descuento
+    </a>
     <br><br>
-    {% for c in contactos %}
+    {% for d in descuentos %}
     <div class="card">
       <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png"
-                alt="Placeholder image" />
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">{{ c.nombre }}</p>
-            <p class="subtitle is-6">Email: {{ c.correo }} <br>Tel: {{ c.telefono }}</p>
-          </div>
-        </div>
+        <p class="title is-4">{{ d.nombre_producto }}</p>
+        <p>{{ d.descripcion }}</p>
+        <p>Precio original: ${{ d.precio_original }}</p>
+        <p>Precio con descuento: ${{ d.precio_descuento }}</p>
+        <p>Categoría: {{ d.categoria.nombre if d.categoria else 'Sin categoría' }}</p>
         <footer class="card-footer">
-          <a href="{{ url_for('contactos.editar_contacto', id=c.id) }}"" class=" card-footer-item">Editar</a>
-          <a href="{{ url_for('contactos.eliminar_contacto', id=c.id) }}" class="card-footer-item">Eliminar</a>
+          <a href="{{ url_for('descuentos.editar_descuento', id=d.id) }}" class="card-footer-item">Editar</a>
+          <a href="{{ url_for('descuentos.eliminar_descuento', id=d.id) }}" class="card-footer-item">Eliminar</a>
         </footer>
-
       </div>
     </div>
     {% endfor %}
