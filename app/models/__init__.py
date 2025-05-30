@@ -1,1 +1,1 @@
-from app.models.models import Contacto
+from app.models.models import Descuento

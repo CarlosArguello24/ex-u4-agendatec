@@ -2,24 +2,38 @@
 {% block content %}
 <div class="columns">
   <div class="column is-offset-3 is-6">
-    <a href="{{ url_for('descuentos.nuevo_descuento') }}" class="button is-link">
-      <i class="fa-solid fa-plus"></i>&nbsp;Nuevo descuento
+    <a href="{{ url_for('descuentos.nuevo_descuento') }}" class="button is-success">
+      <i class="fa-solid fa-plus"></i>
     </a>
     <br><br>
     {% for d in descuentos %}
-    <div class="card">
-      <div class="card-content">
-        <p class="title is-4">{{ d.nombre_producto }}</p>
+    <div class="card mb-4">
+  <div class="card-content">
+    <div class="columns is-vcentered">
+
+      <!-- Columna izquierda: texto -->
+      <div class="column is-8">
+        <p class="title is-4" style="font-family: 'Fira Sans Extra Condensed', sans-serif;">{{ d.nombre_producto }}</p>
         <p>{{ d.descripcion }}</p>
         <p>Precio original: ${{ d.precio_original }}</p>
         <p>Precio con descuento: ${{ d.precio_descuento }}</p>
         <p>Categoría: {{ d.categoria.nombre if d.categoria else 'Sin categoría' }}</p>
-        <footer class="card-footer">
-          <a href="{{ url_for('descuentos.editar_descuento', id=d.id) }}" class="card-footer-item">Editar</a>
-          <a href="{{ url_for('descuentos.eliminar_descuento', id=d.id) }}" class="card-footer-item">Eliminar</a>
-        </footer>
       </div>
+
+      <!-- Columna derecha: imagen y botones -->
+      <div class="column is-4 has-text-right">
+        <figure class="image is-128x128 is-inline-block">
+          <img src="{{ url_for('static', filename='img/desc.png') }}" alt="desc">
+        </figure>
+        <br><br>
+        <a href="{{ url_for('descuentos.editar_descuento', id=d.id) }}" class="button is-warning is-small mb-2">Editar</a>
+        <br>
+        <a href="{{ url_for('descuentos.eliminar_descuento', id=d.id) }}" class="button is-danger is-small">Eliminar</a>
+      </div>
+
     </div>
+  </div>
+</div>
     {% endfor %}
   </div>
 </div>
